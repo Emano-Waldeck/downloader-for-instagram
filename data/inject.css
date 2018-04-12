@@ -1,0 +1,26 @@
+.dwnld {
+  display: block;
+  position: absolute;
+  left: 10px;
+  top: 10px;
+  color: #fff;
+  opacity: 0.05;
+  z-index: 1;
+  background-color: rgba(37, 37, 37, 0.4);
+  padding: 2px 5px;
+}
+.dwnld>span {
+  cursor: pointer;
+}
+.dwnld>span:hover {
+  color: #9acdf9;
+}
+.dwnld>span:not(:last-child)::after {
+  content: ', ';
+}
+
+.dwnld:hover,
+.dwnld[data-visible=true],
+div:hover + .dwnld {
+  opacity: 1;
+}

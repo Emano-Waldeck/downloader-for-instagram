@@ -1,0 +1,27 @@
+{
+  "manifest_version": 2,
+  "version": "0.1.0",
+  "name": "Downloader for Instagram™",
+  "description": "Download images from Instagram in a quality of your choice",
+
+  "permissions": [
+    "downloads",
+    "storage"
+  ],
+
+  "background": {
+    "persistent": false,
+    "scripts": [
+      "background.js"
+    ]
+  },
+
+  "homepage_url": "http://add0n.com/instagram-tool.html",
+
+  "content_scripts": [{
+    "matches": ["*://www.instagram.com/*"],
+    "js": ["data/inject.js"],
+    "css": ["data/inject.css"],
+    "run_at": "document_start"
+  }]
+}
