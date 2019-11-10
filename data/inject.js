@@ -1,15 +1,17 @@
 'use strict';
 
-var script = document.createElement('script');
+const script = document.createElement('script');
 script.textContent = `{
   var observer = new MutationObserver(mutations => {
     mutations
     .filter(m => m.attributeName === 'srcset' && m.type == 'attributes')
     .forEach(m => {
       const img = m.target;
-      if (img.alt) {
+      if (img.alt && img.dwnld === undefined) {
         const div = document.createElement('div');
-        img.parentNode.parentNode.appendChild(div);
+        const parent = img.parentNode.parentNode;
+        img.dwnld = div;
+        parent.appendChild(div);
         div.classList.add('dwnld');
 
         img.getAttribute('srcset').split(',').forEach(s => {
@@ -30,19 +32,6 @@ script.textContent = `{
   });
 }`;
 document.documentElement.appendChild(script);
-
-document.addEventListener('mouseover', ({target}) => {
-  if (target.classList.contains('_mli86')) {
-    const div = target.parentNode.querySelector('.dwnld');
-
-    if (div) {
-      div.dataset.visible = true;
-      target.addEventListener('mouseout', () => {
-        div.dataset.visible = false;
-      });
-    }
-  }
-});
 
 document.addEventListener('click', e => {
   const {target} = e;

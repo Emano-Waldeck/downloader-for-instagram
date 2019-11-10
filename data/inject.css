@@ -4,23 +4,25 @@
   left: 10px;
   top: 10px;
   color: #fff;
-  opacity: 0.05;
+  opacity: 0.2;
   z-index: 1;
   background-color: rgba(37, 37, 37, 0.4);
   padding: 2px 5px;
+  font-size: 11px;
 }
-.dwnld>span {
+.dwnld > span {
   cursor: pointer;
 }
-.dwnld>span:hover {
+.dwnld > span:hover {
   color: #9acdf9;
 }
-.dwnld>span:not(:last-child)::after {
+.dwnld > span:not(:last-child)::after {
   content: ', ';
 }
 
 .dwnld:hover,
 .dwnld[data-visible=true],
-div:hover + .dwnld {
+div:hover ~ .dwnld,
+a:hover .dwnld {
   opacity: 1;
 }
