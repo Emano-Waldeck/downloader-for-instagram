@@ -2,7 +2,7 @@
 
 const script = document.createElement('script');
 script.textContent = `{
-  var observer = new MutationObserver(mutations => {
+  const observer = new MutationObserver(mutations => {
     mutations
     .filter(m => m.attributeName === 'srcset' && m.type == 'attributes')
     .forEach(m => {
@@ -48,11 +48,19 @@ document.addEventListener('click', e => {
     }
     catch (e) {}
     try {
+      title = title || target.closest('article').querySelector('header span').textContent;
+    }
+    catch (e) {}
+    try {
       title = title || target.closest('article').querySelector('header h1').textContent;
     }
     catch (e) {}
     try {
       title = title || target.closest('article').querySelector('header').textContent;
+    }
+    catch (e) {}
+    try {
+      title = title || document.querySelector('header h2').textContent;
     }
     catch (e) {}
 
